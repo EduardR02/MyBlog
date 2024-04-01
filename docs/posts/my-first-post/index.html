@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>
+VR Solar System | Eduard Rantsevich
+</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Here I will share my project updates, starting with the Solar System for my VR course">
+
+<meta name="generator" content="Hugo 0.124.1">
+
+
+<link rel="canonical" href="https://EduardR02.github.io/MyBlog/posts/my-first-post/" >
+
+
+
+
+<link href="/MyBlog/css/style.min.d23c1980faa61c0d6b331a0cd9dbc34fb7dade9e294067f1108fb8f26bd7796c.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+    <div class="flexWrapper">
+        <header class="headerWrapper">
+    <div class="header">
+        <div>
+            <a class="terminal" href="https://EduardR02.github.io/MyBlog/">
+                <span>EduardR@eduards-projects.io ~ $</span>
+            </a>
+        </div>
+        <input class="side-menu" type="checkbox" id="side-menu">
+        <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+        <nav class="headerLinks">
+            <ul>
+                
+                <li>
+                    <a href="https://EduardR02.github.io/MyBlog/posts" title="" >
+                        ~/posts</a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+        <div class="content">
+            <main class="main">
+                
+<div class="postWrapper">
+    <h1>VR Solar System</h1>
+    
+    
+    <section class="postMetadata">
+        <dl>
+            
+            
+            
+            
+                <dt>published</dt>
+                
+                <dd><time datetime="2024-04-01">April 1, 2024</time></dd>
+            
+            
+                <dt>reading time</dt>
+                <dd>22 minutes</dd>
+            
+        </dl>
+    </section>
+    
+    <div>
+        <h2 id="introduction">Introduction</h2>
+<hr>
+<p>This semester I was looking around for an interesting class. My goal was to pick something where I would be able to learn as much as possible, meaning I wanted to start from zero and choose something I had not engaged with before: Game Dev and VR.<br>
+It was always in the back of my mind that this whole topic kind of exists and is exciting, but I never got around to actually downloading Unity and tinkering with it myself. This course was perfect because we could more or less do whatever we wanted and make it interesting for ourselves, which was my goal.</p>
+<p>The objective of the course was to implement our own locomotion and interaction technique on a toy racetrack, which would replace the classic written exam. The track consisted of moving to checkpoints using the locomotion, and then only being able to progress further by solving an interaction challenge - all in VR.<br>
+Oh yeah, and we were given the Quest 3!</p>
+<h2 id="idea">Idea</h2>
+<hr>
+<h4 id="first-thoughts">First thoughts</h4>
+<p>My first idea that I instantly got once it was mentioned that we had to make our own locomotion was to make a fast car. I thought it would be extremely fun to drive around a toy racetrack very fast, and at the same time was a bit confused as to why I hadn&rsquo;t heard of something like Need For Speed VR before, given how cool I thought it to be. I had already imagined how I would maybe even use hand tracking and a virtual steering wheel so you could play just by using your hands and nothing else. Sadly it seemed like this would cause a lot of motion sickness, especially at the speed I wanted to allow for to make it exciting. I probably should have tested this before moving on to my next idea, just to be able to have fun driving in VR. Maybe in the future&hellip;</p>
+<h4 id="second-thoughts">Second thoughts</h4>
+<p>The main reason I didn&rsquo;t pursue said idea was that I thought that the implementation would be quite straightforward, and remember, I took this course to learn something new, not be done in a few hours.</p>
+<p>I remembered this fun little iPad game called OsmosHD, in which you control a small circular organism by tapping in the opposite direction of where you want to go, thereby expelling bubbles of mass that propel you forward, while your little organism is flying in orbits around bigger bodies, which will absorb you if they are larger and vice versa, with the goal of each level to become the biggest organism.</p>
+<p><img src="/osmos.jpg" alt="Osmos"></p>
+<p>I decided to somewhat adapt this to 3D and make a toy solar system where you fly around by boosting yourself from your arms (like Iron Man) while interacting with the gravity of all the planets while trying to complete an arbitrary goal (in this case, the interaction technique required by the course).</p>
+<p>Luckily, a project like this already existed, as a YouTuber called <a href="https://www.youtube.com/@SebastianLague">Sebastian Lague</a> made a <a href="https://www.youtube.com/watch?v=7axImc1sxa0&amp;list=PLFt_AvWsXl0cSy8fQu3cFycsOzNjF31M1">video series</a> (I highly recommend watching) on a toy solar system inspired by <a href="https://store.steampowered.com/app/753640/Outer_Wilds/">Outer Wilds</a>. This was essentially what I wanted, now I <strong>just</strong> needed to port this to VR. Easy, right? <em>Ha!</em></p>
+<p><img src="/Orbits.PNG" alt="SebLague Project 1">
+<img src="/ShapingPlanetsVid2.PNG" alt="SebLague Project 2"></p>
+<h2 id="interaction-and-locomotion-ideas">Interaction and Locomotion ideas</h2>
+<p>The locomotion and interaction techniques ideas are quite simple. You fly around using boosters shooting from your hands (as described above). For the interaction, you would need to bring an object, shaped like a T, as close as possible to a target of the same shape in terms of rotation and translation, which both spawn during a challenge.</p>
+<p>My idea was initially to lock the T shape in place and only have it rotate freely. You would shoot it with the booster giving it rotation from the particles pushing against it. However, after learning that translation must also be part of the challenge, I added a surrounding box, in which the T shape would freely bounce.
+Once the target shape is as close as possible, you just press a button on your controller to lock it in place and finalize the challenge.</p>
+<p>The challenge location would be on the different planets to which you had to fly to complete it.</p>
+<p><img src="/interaction-challenge-screenshot.jpeg" alt="Interaction Challenge"></p>
+<h2 id="porting-to-vr">Porting to VR</h2>
+<p>I could elaborate on a long boring list of things that were necessary to do to get to a stable point, but what it boils down to is this:</p>
+<ul>
+<li>Understanding all of the code and how it worked together, what was important and dependent on each other</li>
+<li>Take out everything I don&rsquo;t need and make sure nothing breaks (This took like 5 hard resets O_O)</li>
+<li>Add a VR Rig and write a new player controller that ties into the project correctly</li>
+<li>First make all the custom shaders actually appear (I couldn&rsquo;t get them to be visible for some time), then add the correct math for both eyes</li>
+<li>Fix any preexisting mistakes (see Floating Point Origin and LoD)</li>
+</ul>
+<h2 id="here-is-me-completing-the-parkour">Here is me completing the &ldquo;parkour&rdquo;</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/ce34-mluCjw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="some-parts-of-the-implementation-explained">Some parts of the Implementation explained</h2>
+<hr>
+<h3 id="floating-point-origin">Floating Point Origin</h3>
+<p>This was one of the first things that bugged me a lot. In the initial project, it was necessary to have an origin reset to zero whenever you got too far from it. This is due to floating point precision which results in objects far away from the origin starting to jitter. To do this you just need to teleport everything by the same amount towards the origin. Sounds <em>so simple</em>, right?</p>
+<p>The initial problem was that at the moment of the shift, there would be a flicker. Terrible for VR. Later I also noticed a small mismatch in player and planet position, maybe half a meter. I was trying everything and nothing would work, either the flicker remained, the mismatch remained, or the player inexplainably shot off at light speed away from everything.</p>
+<p>Something that seemed to work was changing the script execution order, but that wasn&rsquo;t a great solution and I tried to move off of it. What finally seemed to be the case was that the flicker came from a mismatch in update order between Transforms and Rigidbodies, while the slight mismatch likely came from Rigidbody interpolation. This meant I moved everything that required an origin update to Rididbodies, while also keeping their interpolation by using</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span>Rigidbody.MovePosition();
+</span></span></code></pre></div><p>Oh yeah, and the particle system also had issues, which I had to solve by manually teleporting the particles already emitted.</p>
+<h3 id="lod">LOD</h3>
+<p>While figuring out the problems mentioned above I stumbled upon the LOD calculation code, which was rotating the camera&rsquo;s transform, which I thought could lead to these issues as I had already tried so many things.</p>
+<p>What it was doing was &ldquo;looking&rdquo; from the player&rsquo;s position at each of the planets using</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span>Transform.LookAt();
+</span></span></code></pre></div><p>and calculating how much screen height they were taking up. I decided to do this manually to stop modifying the camera&rsquo;s transform.</p>
+<p>This led me on a tangent about the model, view, and projection matrices which later on helped me with the shaders. What I essentially did was take the current MVP and multiply a rotation matrix between the view and projection matrix, essentially making the camera &ldquo;look&rdquo; somewhere else.</p>
+<p>This calculation similarly led me onto a tangent about Quaternions which also proved quite useful in general.</p>
+<h3 id="planet-rotation-and-its-consequences">Planet rotation and its consequences</h3>
+<p>I spent quite a bit of time thinking about rotations and Quaternions during this project. Everything was fairly fine before adding them, but once the planets rotate, there are many considerations to be made, like:</p>
+<ul>
+<li>T Shape position and rotation</li>
+<li>Player rotation and velocity when standing on planets</li>
+<li>Player rotation and velocity when close to planets
+A general problem for VR is when the player needs to be rotated or moved, but he is not moving or rotating in the real world. This causes motion sickness.</li>
+</ul>
+<p>I had to make sure to solve these problems, while also not making the player, which mostly was myself, very sick (sadly I did not always succeed at that when testing).</p>
+<p>The first problem comes from trying to land on planets. You want your feet to be downwards so that you can &ldquo;walk&rdquo;, in this case, more like &ldquo;stand&rdquo;. This means whichever rotation you previously had needs to naturally transition into an &ldquo;upright&rdquo; position. But this also means that when you are moving relative to the planet while being close to it, or standing on it, you have to be continuously rotated to remain upright. Now once the planet starts rotating, the player also needs to have an appropriate velocity applied to him so that he doesn&rsquo;t &ldquo;slide off&rdquo;.</p>
+<p>The second part is taking off. You will probably be looking towards the sky when choosing your next target - up. If you were to take off like this and fly there, you would have to keep looking up while doing so, which would be quite uncomfortable. So at some point when you are leaving the planet, you need to be rotated in a direction that makes sense.</p>
+<p>This part took quite a few iterations to get right, meaning to not make you sick, while also making sure you get reoriented towards something that makes sense, and most importantly that you can look forward/straight in the real world while doing so.</p>
+<h3 id="shaders">Shaders</h3>
+<p>Getting these to work sucked because I had no clue what I was doing, and because this project was heavily dependent on them I had to first learn a lot online to even slightly understand what I was doing.
+Finally, I mostly figured out what I had to change in the ocean and atmosphere calculations to be rendered correctly for both eyes, which was essentially manually calculating the view vector (for both eyes) by passing the appropriate matrices to the shader and doing the final calculation there because the view vector differs for each vertex.</p>
+<h3 id="making-my-own-planets">Making my own planets</h3>
+<p>This was a lot of fun. The original Unity project had a custom script to customize planets, so all you had to figure out was which type of planet you wanted, create all the necessary parts, and then play around by customizing them. Because the planet&rsquo;s atmospheres, oceans, and surfaces are all either post-processing or compute shaders, you just had to change as many noise values as you could in the custom script to keep it distinct from the other planets, while also keeping it still recognizable and interesting. Using this script I made three more planets: An ocean planet with many tiny islands, a giant planet, and a dark mysterious shadow planet.</p>
+<p><img src="/water-planet.jpg" alt="waterplanet"></p>
+<h3 id="solar-system-orbits">Solar System orbits</h3>
+<p>Wanting to keep the spirit of my idea alive, the worst thing to do would be to make the planets follow hard-coded orbits. The initial project was already doing the gravity calculation which was perfect for my needs, all I did was scale the G constant a bit to make gravity way stronger.</p>
+<h2 id="interaction-challenge">Interaction challenge</h2>
+<p>I hate to admit it, but this was almost an afterthought. After spending so much time going on tangents and learning about many different things, I kind of forgot that I still hadn&rsquo;t even started doing the Parkour Challenge.</p>
+<p>Compared to the other things this was easy and difficult at the same time. Parts like stats tracking, and general challenge setup were quite boilerplate and easy to do, with some caveats:</p>
+<ul>
+<li>Figuring out how to guide the player toward the challenge: I decided to write a simple shader that acts like a beacon, that spawns &ldquo;on&rdquo; the challenge and is visible from anywhere</li>
+<li>Some simple math to make the coins spawn equidistantly around a planet</li>
+<li>Make a new scene with a &ldquo;menu room&rdquo; that shows stats and a short text tutorial</li>
+</ul>
+<p>A fun part was figuring out how to make any number of challenges possible. I decided to randomly generate them based on a seed by taking all the vertices of a planet mesh, removing all below the ocean, and picking a random one to spawn a challenge &ldquo;above&rdquo; it.</p>
+<p>This got a bit more complicated after adding planet rotation, because the vertices would no longer match up to their actual position, meaning I now had to also rotate the chosen vertex in just the same way as the planet, which is easy to do by taking the initial planet rotation and getting the delta between the current one, then applying it to the vertex. The same thing goes for the beacon obviously.</p>
+<p>The final problem was the T shape. Because the goal was to push it around using my boosters, it had to be a Rigidbody to interact with the particles. The problem here is that you can&rsquo;t just attach it to the planet at a certain point like a transform. What needed to be done was to manually calculate the correct velocity you need to apply for it to stay in place relative to the planet it&rsquo;s on. And finally, you also need to rotate it with the planet, otherwise to an observer standing on the planet (which rotates) it would look like the shape is rotating, while it is actually not. This image explains it better:</p>
+<p><img src="/rotationexplanation.PNG" alt="Interaction Challenge expl"></p>
+<h3 id="path-visualization">Path visualization</h3>
+<p>I decided early on that I would need to show the player approximately where they are going because otherwise, this is difficult to estimate. I made a Linerenderer show the simulated next X steps where the player would go in the future by simulating the planets X steps into the future and then applying the gravity equation for the simulated player at every step.</p>
+<p>It was also important to not have a global reference frame, which would just confuse, but rather make the line relative to the closest planet. Planet rotation also complicated this part, so I made it relative to the rotation as well.</p>
+<p>A cool optimization I did was when I noticed that this script was taking about 7% in the profiler, not including graphics. Instead of computing all the steps for the player every single frame, I only added the newest prediction, meaning if you predict 500 steps forward this is a 500x reduction.</p>
+<p>This however only works if the player did not input any movement commands. Otherwise, the trajectory completely changes and you have to recompute either way. The trajectory is also recomputed if the inaccuracy between the prediction and your current position is too large, presumably from floating point error accumulation, which happens about every 50 physics timesteps. This reduced this script&rsquo;s profiler share to essentially 0%.</p>
+<h3 id="performance">Performance</h3>
+<p>Having constantly used AirLink to test the project, I was for some reason not expecting the performance issues once I actually deployed on the Quest 3. Even having the more performant Quest 3, the game still struggled to run, getting about 30 fps, which is especially terrible in VR. Having learned a lot about shaders I understand that fixing this would likely require an immense effort.</p>
+<p>Unfortunately, my current solution is not great. Either turning down all the shader iterations and model poly count which looks significantly worse, just turning the shaders off which also sucks, or playing by streaming from PC, which is the best option but obviously not portable.</p>
+<h3 id="frustum-culling">Frustum Culling</h3>
+<p>Because all the atmospheres and oceans are post-processing effects, they had a custom post-processing &ldquo;pipeline&rdquo; script. They were just sorted by distance and added to the effects depending if a planet had them or not. What I did was make sure that they were only added if they were inside the camera frustum (atmospheres and oceans are essentially spheres with x * radius of the planet).</p>
+<p>As I later found out, Unity automatically does Frustum Culling for objects, which disappointed me a bit that I had done all this for nothing. However, I am still unsure if it is in this case true because being shaders they might still run. Either way (unity or me) this works, and looking away from all the planets stops rendering their oceans and atmospheres!</p>
+<h2 id="anecdotes">Anecdotes</h2>
+<hr>
+<h3 id="horrifically-fast-spinning-planets">Horrifically fast-spinning planets</h3>
+<p>When implementing the planet rotation, I wanted to make sure the rotational speed felt right. To see how ridiculous it would be if I set it stupidly high, I did just that and put on my HMD. <strong>Big</strong> mistake.</p>
+<p>I spawned, as usual, just above the &ldquo;toy earth&rdquo; called the Humble Abode. Having the rotational values of the moon set to 3 revolutions per second, I looked up. I immediately got a weird feeling in my stomach, something like being on a roller coaster and a haunted house at the same time, while also looking down from a high glass bridge. For some reason having this extremely large object spin incredibly fast gave me an immense feeling of terror, like a huge asteroid flying towards you. I couldn&rsquo;t resist seeing what would happen if I tried to land on it, so I proceeded to fly towards the moon, which just made the horrible feeling stronger. Weirdly it was extremely exciting and horrifying at the same time. The anticipation of hitting it became worse and worse as I got closer until I finally crashed into it and was flung out far away. This whole experience was very unique and insane, which made me do this a few times because of how funny it felt.</p>
+<h3 id="the-sun-kills-you">The sun kills you</h3>
+<p>Gravity on the sun is so strong, that when you stand on the closest planets to it, it actually starts to lift you off when you are on the planet side looking towards the sun. It became really annoying to do the interaction challenge on these planets because you just couldn&rsquo;t stay still while doing it, and had to constantly focus on just staying in place.</p>
+<p>I decided to fix this by adding a gravity modifier to planets that only affects the player and turned it way down for the sun and slightly up for every planet. This went well with the general spirit of the game because it allows you to orbit planets easier while also not being sucked into the sun so much.</p>
+<p>A fun feature still remains in that when you are flying in orbit around the inner planets, your predicted path will look ridiculous if you were to not think about the sun. You would expect a smooth downward curve, but it&rsquo;s actually heavily curved up.</p>
+<p>Just for fun I also made it so that after completing the course, the sun&rsquo;s gravity is increased by 10, thereby instantly launching the player towards it and resetting him to the menu.</p>
+<h3 id="instability">Instability</h3>
+<p>Having the planets interact purely through gravity made the solar system very sensitive to its starting configuration. I especially felt this when adding three new planets to the outer solar system. With each new planet, the orbits of all the other planets started to differ a lot, and it took some time to get them just right so the solar system didn&rsquo;t shoot out into chaos. Here is an example of just a single planet having its starting velocity differ by 1 m/s:</p>
+<p><img src="/OrbitDebugGood.PNG" alt="orbits good">
+<img src="/OrbitDebugBad.PNG" alt="orbits bad"></p>
+<h4 id="weird-orbits">Weird Orbits</h4>
+<p>Slightly related to the instability mentioned above are the weird orbits of moons, which result from increasing the planet&rsquo;s orbital speed by about 10x - 20x, and about 5x bigger than what they were before. This was necessary to make the system feel less static and actually <em>look</em> fast and <strong>big</strong>.</p>
+<p><img src="/weird_orbits.PNG" alt="weird orbits"></p>
+<p>As a side effect, where you would expect circular orbits of moons, there are these weirdly shaped ones, which from the point of view of the planet look like the moon being stationary for some time, relative to the planet, then moving quickly to the other side.</p>
+<h2 id="evaluation">Evaluation</h2>
+<hr>
+<h4 id="methodology">Methodology</h4>
+<p>To produce some insights and collect some general experience we were tasked with conducting a simple user study with two additional participants and ourselves.</p>
+<p>During the evaluation, I gave both test subjects a quick introduction about how the mechanics work, and what they were supposed to do (follow the beacon, get the T shape in place, and collect the coins).</p>
+<p>The locomotion proved much more difficult than I had anticipated. Because I was quite familiar with it through testing many aspects of the game countless times, it was not immediately obvious how much of a challenge it would be to someone who was not familiar with it.</p>
+<p>I allowed for a practice session of about 5 minutes where I gave the participants time to fly around and just try to land on a planet. Next, I instructed them to complete the course as fast as possible, while also having adjusted the difficulty by reducing the number of interaction challenges, and therefore planets to fly to, to two, and also reducing the number of coins per planet to two.</p>
+<p>Unfortunately on the first attempt, the planet resulting from the random seed was the water planet, which was very difficult to land on, meaning I also changed the seed so that this planet would not come up.</p>
+<h4 id="problems-and-feedback">Problems and Feedback</h4>
+<p>Critiques were plentiful and deserved.<br>
+As a result of the study, it was clear that the locomotion was too difficult, however, I noticed that the longer the participants played, the more skilled they became at aiming themselves. It was difficult to explain how the projected path worked, it mostly seemed to confuse the participants who were expecting to end up in a different place than the line was showing and also did not understand how their actions affected how the line moved.</p>
+<p>It was also interesting to see how both participants were constantly overshooting planets, gathering too much speed at the start, and then not understanding why they weren&rsquo;t slowing down when close to the planet. Meaning they now had to accelerate in the opposite direction to get back to the planet, just to overshoot it again. If one looked from far away it would maybe look something like a visual binary search.</p>
+<p>For the interaction feedback was also mixed, a problem especially was that the jets would move you while you tried bouncing the T shape, which made me later add a secondary fire which still has the exhaust, but does not move you around. However, compared to the locomotion, bouncing the T shape around was rather intuitive and did not require much explanation.</p>
+<h4 id="metrics">Metrics</h4>
+<p>The error of 1 should be about the length of a T shape (which can be arbitrarily scaled). My time was for the full course (3 planets, 10 coins each), I&rsquo;d assume my time would be around 2 mins for the smaller one.</p>
+<table>
+<thead>
+<tr>
+<th>Participant</th>
+<th style="text-align:center">Coins</th>
+<th style="text-align:center">Time</th>
+<th style="text-align:center">Challenges</th>
+<th style="text-align:center">Avg Error</th>
+<th style="text-align:center">Motion Sickness</th>
+<th style="text-align:center">Presence</th>
+<th style="text-align:center">Enjoyment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>me</td>
+<td style="text-align:center">30/30</td>
+<td style="text-align:center">6:21</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">(0.52, -0.50, -0.05)</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td>participant 1</td>
+<td style="text-align:center">4/4</td>
+<td style="text-align:center">7:13</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">(0.42, -0.08, 0.82)</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td>participant 2</td>
+<td style="text-align:center">3/4</td>
+<td style="text-align:center">5:46</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">(0.68, -0.12, -0.34)</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="takeaways">Takeaways</h4>
+<p>The general gist was that the tasks were a bit tedious and the controls were &ldquo;too sensitive&rdquo;, one participant said that they liked to win, and it was too hard to &ldquo;win&rdquo;, which made them annoyed and frustrated at the game.
+Another participant said they would have preferred joystick controls over pointing in the opposite direction of where to go, as the hand position was a bit uncomfortable.</p>
+<p>The general atmosphere of the game was complimented, however.
+My conclusion from the evaluation is that it&rsquo;s likely that the locomotion suffers from the fact that the interaction is quite finicky, and you need to position yourself too precisely to reach it. If I had chosen another interaction challenge that would be less about the T shape and more exploration-centered, maybe like taking photographs of specific planets or exploring certain spots on foot, the game would have been more fun.</p>
+<p>A good solution for the current &ldquo;parkour&rdquo; would be a few custom tutorials that intuitively explain how the flying works and let the player experiment a bit for themselves, maybe on a flat plane first, and show them why the projected path is useful.</p>
+<h2 id="further-ideas">Further Ideas</h2>
+<p>All of the below-stated mechanics are just things that I didn&rsquo;t get around to implementing but seem promising and interesting to implement in the future if I ever return to this project.</p>
+<h4 id="black-hole">Black Hole</h4>
+<p>Replace the sun with an awesome-looking black hole shader. I even found one, but because I have no clue (yet) about game engine lighting (which I would have to redo after removing the sun) the black hole shader would likely have significant performance costs, especially when running on the Quest.</p>
+<h4 id="carousel">Carousel</h4>
+<p>I really wanted to implement a grabbing mechanic, because when I was testing out different VR games it was fun to hang on to a wall like a monkey with one hand, while also doing something else. My plan was to be able to grab onto a larger radius than the planets themselves, so you could essentially ride through their orbit like on a carousel. I did implement climbing in my test world and found it fun, but putting it into the main game would require something else you could do while grabbing on. Something that I thought could be interesting would be instead of having to fly through the coins, and thereby collect them, you would instead grab onto the planet, and use a gun that would be anchored to your hip to shoot the coins. Some testing would be necessary to see how difficult this is, from which further ideas could emerge.</p>
+<h4 id="sandbox-planets">Sandbox Planets</h4>
+<p>Spawning in new planets seems like a fun idea, but with the described unstableness of the system, this would cause everything to descend into chaos. A funny mechanic that could use this would function like a last-ditch effort to complete the goal, get a planet closer, or gravity boost off of the spawned planet before everything flings out in all directions. On the other hand, this spawned planet could ignore the solar system&rsquo;s gravity and just have a rigid orbit, only affecting the player&rsquo;s gravity.
+Deleting planets could function in the same way.</p>
+<h4 id="hud-shader">HUD shader</h4>
+<p>Self-explanatory, but debatable if the visual clutter is worth it. Something like a watch or arm display would be much better but would be non-trivial to implement. It could display things like speed, the closest planet, jetpack fuel, current score and time.</p>
+<h4 id="vignette">Vignette</h4>
+<p>I actually found an <a href="https://github.com/MirzaBeig/Anime-Speed-Lines">&ldquo;anime&rdquo; vignette shader</a> which is supposed to give you a sensation of going fast, and figured out how to port it to VR (which went similarly well as the oceans and atmospheres&hellip;). However I decided not to add it to the final project, mainly out of performance reasons, but it might be nice to have as something you can turn on/off.</p>
+<h2 id="conclusion">Conclusion</h2>
+<hr>
+<p>I had a lot of fun doing this project, and learned more than I anticipated which is great. I would recommend this class if you like doing interesting projects where you can tinker tons, and therefore constantly encounter new problems and solutions.</p>
+<p>Being curious and trying things out was definitely the most important part of this journey, as it allowed me to explore and learn where I didn&rsquo;t know the right answer.</p>
+<p>As a byproduct, I also learned a lot about Unity and general Game Dev, while also scratching the surface of some interesting shader math, with many further topics to explore (knowing what I don&rsquo;t know).</p>
+<p>Here are some more nice pictures</p>
+<p><img src="/solar-system-view.jpeg" alt="solar system pic 1">
+<img src="/solar-system-view2.jpeg" alt="solar system pic 2"></p>
+
+    </div>
+</div>
+
+            </main>
+        </div>
+
+
+        <footer class="footer">
+    
+        <span>
+            © 2024 Eduard Rantsevich, Built with
+            <a href="https://gohugo.io" class="footerLink">Hugo</a> and
+            <a href="https://github.com/LordMathis/hugo-theme-nightfall" class="footerLink">Nightfall</a> theme
+        </span>
+    
+</footer>
+    </div>
+
+</body>
+
+</html>

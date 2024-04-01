@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://EduardR02.github.io/MyBlog/posts/</loc>
+    <lastmod>2024-04-01T11:26:57+02:00</lastmod>
+  </url><url>
+    <loc>https://EduardR02.github.io/MyBlog/</loc>
+    <lastmod>2024-04-01T11:26:57+02:00</lastmod>
+  </url><url>
+    <loc>https://EduardR02.github.io/MyBlog/posts/my-first-post/</loc>
+    <lastmod>2024-04-01T11:26:57+02:00</lastmod>
+  </url><url>
+    <loc>https://EduardR02.github.io/MyBlog/categories/</loc>
+  </url><url>
+    <loc>https://EduardR02.github.io/MyBlog/tags/</loc>
+  </url>
+</urlset>

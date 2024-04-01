@@ -1,0 +1,31 @@
+baseURL = "https://EduardR02.github.io/MyBlog"
+languageCode = "en-us"
+publishDir = "docs"
+title = "Projects Blog"
+theme = "nightfall"
+
+[params]
+user = "EduardR"
+hostname = "eduards-projects.io"
+sitedescription = "Here I will share my project updates, starting with the Solar System for my VR course"
+  [params.author]
+    name = "Eduard Rantsevich"
+    email = "eduard@rantsevich.net"
+
+[[params.social]]
+key = 0
+name = "github"
+url = "https://github.com/EduardR02"
+#icon = "fa-brands fa-github"  # Add link to your icon font to `layouts/partials/custom-head.html`
+
+[[params.social]]
+key = 1
+name = "email"
+url = "mailto:eduard@rantsevich.net"
+
+
+[menu]
+  [[menu.header]]
+    name = "posts"
+    weight = 0
+    url = "/posts"
