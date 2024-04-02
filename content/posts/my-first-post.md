@@ -23,14 +23,14 @@ The main reason I didn't pursue said idea was that I thought that the implementa
 
 I remembered this fun little iPad game called OsmosHD, in which you control a small circular organism by tapping in the opposite direction of where you want to go, thereby expelling bubbles of mass that propel you forward, while your little organism is flying in orbits around bigger bodies, which will absorb you if they are larger and vice versa, with the goal of each level to become the biggest organism.
 
-![Osmos](/osmos.jpg)
+![Osmos](./osmos.jpg)
 
 I decided to somewhat adapt this to 3D and make a toy solar system where you fly around by boosting yourself from your arms (like Iron Man) while interacting with the gravity of all the planets while trying to complete an arbitrary goal (in this case, the interaction technique required by the course).
 
 Luckily, a project like this already existed, as a YouTuber called [Sebastian Lague](https://www.youtube.com/@SebastianLague) made a [video series](https://www.youtube.com/watch?v=7axImc1sxa0&list=PLFt_AvWsXl0cSy8fQu3cFycsOzNjF31M1) (I highly recommend watching) on a toy solar system inspired by [Outer Wilds](https://store.steampowered.com/app/753640/Outer_Wilds/). This was essentially what I wanted, now I **just** needed to port this to VR. Easy, right? _Ha!_
 
-![SebLague Project 1](/Orbits.PNG)
-![SebLague Project 2](/ShapingPlanetsVid2.PNG)
+![SebLague Project 1](./Orbits.PNG)
+![SebLague Project 2](./ShapingPlanetsVid2.PNG)
 
 ## Interaction and Locomotion ideas
 The locomotion and interaction techniques ideas are quite simple. You fly around using boosters shooting from your hands (as described above). For the interaction, you would need to bring an object, shaped like a T, as close as possible to a target of the same shape in terms of rotation and translation, which both spawn during a challenge.
@@ -40,7 +40,7 @@ Once the target shape is as close as possible, you just press a button on your c
 
 The challenge location would be on the different planets to which you had to fly to complete it.
 
-![Interaction Challenge](/interaction-challenge-screenshot.jpeg)
+![Interaction Challenge](./interaction-challenge-screenshot.jpeg)
 
 ## Porting to VR
 I could elaborate on a long boring list of things that were necessary to do to get to a stable point, but what it boils down to is this:
@@ -99,7 +99,7 @@ Finally, I mostly figured out what I had to change in the ocean and atmosphere c
 ### Making my own planets
 This was a lot of fun. The original Unity project had a custom script to customize planets, so all you had to figure out was which type of planet you wanted, create all the necessary parts, and then play around by customizing them. Because the planet's atmospheres, oceans, and surfaces are all either post-processing or compute shaders, you just had to change as many noise values as you could in the custom script to keep it distinct from the other planets, while also keeping it still recognizable and interesting. Using this script I made three more planets: An ocean planet with many tiny islands, a giant planet, and a dark mysterious shadow planet.
 
-![waterplanet](/water-planet.jpg)
+![waterplanet](./water-planet.jpg)
 
 ### Solar System orbits
 Wanting to keep the spirit of my idea alive, the worst thing to do would be to make the planets follow hard-coded orbits. The initial project was already doing the gravity calculation which was perfect for my needs, all I did was scale the G constant a bit to make gravity way stronger.
@@ -117,7 +117,7 @@ This got a bit more complicated after adding planet rotation, because the vertic
 
 The final problem was the T shape. Because the goal was to push it around using my boosters, it had to be a Rigidbody to interact with the particles. The problem here is that you can't just attach it to the planet at a certain point like a transform. What needed to be done was to manually calculate the correct velocity you need to apply for it to stay in place relative to the planet it's on. And finally, you also need to rotate it with the planet, otherwise to an observer standing on the planet (which rotates) it would look like the shape is rotating, while it is actually not. This image explains it better:
 
-![Interaction Challenge expl](/rotationexplanation.PNG)
+![Interaction Challenge expl](./rotationexplanation.PNG)
 
 ### Path visualization
 I decided early on that I would need to show the player approximately where they are going because otherwise, this is difficult to estimate. I made a Linerenderer show the simulated next X steps where the player would go in the future by simulating the planets X steps into the future and then applying the gravity equation for the simulated player at every step.
@@ -153,13 +153,13 @@ Just for fun I also made it so that after completing the course, the sun's gravi
 ### Instability
 Having the planets interact purely through gravity made the solar system very sensitive to its starting configuration. I especially felt this when adding three new planets to the outer solar system. With each new planet, the orbits of all the other planets started to differ a lot, and it took some time to get them just right so the solar system didn't shoot out into chaos. Here is an example of just a single planet having its starting velocity differ by 1 m/s:
 
-![orbits good](/OrbitDebugGood.PNG)
-![orbits bad](/OrbitDebugBad.PNG)
+![orbits good](./OrbitDebugGood.PNG)
+![orbits bad](./OrbitDebugBad.PNG)
 
 #### Weird Orbits
 Slightly related to the instability mentioned above are the weird orbits of moons, which result from increasing the planet's orbital speed by about 10x - 20x, and about 5x bigger than what they were before. This was necessary to make the system feel less static and actually *look* fast and **big**.
 
-![weird orbits](/weird_orbits.PNG)
+![weird orbits](./weird_orbits.PNG)
 
 As a side effect, where you would expect circular orbits of moons, there are these weirdly shaped ones, which from the point of view of the planet look like the moon being stationary for some time, relative to the planet, then moving quickly to the other side.
 
@@ -231,5 +231,5 @@ As a byproduct, I also learned a lot about Unity and general Game Dev, while als
 
 Here are some more nice pictures
 
-![solar system pic 1](/solar-system-view.jpeg)
-![solar system pic 2](/solar-system-view2.jpeg)
+![solar system pic 1](./solar-system-view.jpeg)
+![solar system pic 2](./solar-system-view2.jpeg)
