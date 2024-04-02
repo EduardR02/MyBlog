@@ -1,6 +1,5 @@
 baseURL = "https://EduardR02.github.io/MyBlog/"
 languageCode = "en-us"
-publishDir = "docs"
 title = "Projects Blog"
 theme = "nightfall"
 canonifyURLs = true

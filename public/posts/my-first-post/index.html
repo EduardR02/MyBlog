@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-<head><script src="/MyBlog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=MyBlog/livereload" data-no-instant defer></script>
+<head>
     <title>
 VR Solar System | Eduard Rantsevich
 </title>
@@ -13,12 +13,12 @@ VR Solar System | Eduard Rantsevich
 <meta name="generator" content="Hugo 0.124.1">
 
 
-<link rel="canonical" href="http://localhost:1313/MyBlog/posts/my-first-post/" >
+<link rel="canonical" href="https://EduardR02.github.io/MyBlog/posts/my-first-post/" >
 
 
 
 
-<link href="/MyBlog/css/style.min.d23c1980faa61c0d6b331a0cd9dbc34fb7dade9e294067f1108fb8f26bd7796c.css" rel="stylesheet">
+<link href="https://EduardR02.github.io/MyBlog/MyBlog/css/style.min.d23c1980faa61c0d6b331a0cd9dbc34fb7dade9e294067f1108fb8f26bd7796c.css" rel="stylesheet">
 
 
 
@@ -31,8 +31,8 @@ VR Solar System | Eduard Rantsevich
         <header class="headerWrapper">
     <div class="header">
         <div>
-            <a class="terminal" href="http://localhost:1313/MyBlog/">
-                <span>EduardR@eduards-projects.io ~ $</span>
+            <a class="terminal" href="https://EduardR02.github.io/MyBlog/">
+                <span>EduardR02@github.io ~ $</span>
             </a>
         </div>
         <input class="side-menu" type="checkbox" id="side-menu">
@@ -41,7 +41,7 @@ VR Solar System | Eduard Rantsevich
             <ul>
                 
                 <li>
-                    <a href="http://localhost:1313/MyBlog/posts" title="" >
+                    <a href="https://EduardR02.github.io/posts" title="" >
                         ~/posts</a>
                 </li>
                 
@@ -89,17 +89,17 @@ Oh yeah, and we were given the Quest 3!</p>
 <h4 id="second-thoughts">Second thoughts</h4>
 <p>The main reason I didn&rsquo;t pursue said idea was that I thought that the implementation would be quite straightforward, and remember, I took this course to learn something new, not be done in a few hours.</p>
 <p>I remembered this fun little iPad game called OsmosHD, in which you control a small circular organism by tapping in the opposite direction of where you want to go, thereby expelling bubbles of mass that propel you forward, while your little organism is flying in orbits around bigger bodies, which will absorb you if they are larger and vice versa, with the goal of each level to become the biggest organism.</p>
-<p><img src="/osmos.jpg" alt="Osmos"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/osmos.jpg" alt="Osmos"></p>
 <p>I decided to somewhat adapt this to 3D and make a toy solar system where you fly around by boosting yourself from your arms (like Iron Man) while interacting with the gravity of all the planets while trying to complete an arbitrary goal (in this case, the interaction technique required by the course).</p>
 <p>Luckily, a project like this already existed, as a YouTuber called <a href="https://www.youtube.com/@SebastianLague">Sebastian Lague</a> made a <a href="https://www.youtube.com/watch?v=7axImc1sxa0&amp;list=PLFt_AvWsXl0cSy8fQu3cFycsOzNjF31M1">video series</a> (I highly recommend watching) on a toy solar system inspired by <a href="https://store.steampowered.com/app/753640/Outer_Wilds/">Outer Wilds</a>. This was essentially what I wanted, now I <strong>just</strong> needed to port this to VR. Easy, right? <em>Ha!</em></p>
-<p><img src="/Orbits.PNG" alt="SebLague Project 1">
-<img src="/ShapingPlanetsVid2.PNG" alt="SebLague Project 2"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/Orbits.PNG" alt="SebLague Project 1">
+<img src="https://EduardR02.github.io/MyBlog/ShapingPlanetsVid2.PNG" alt="SebLague Project 2"></p>
 <h2 id="interaction-and-locomotion-ideas">Interaction and Locomotion ideas</h2>
 <p>The locomotion and interaction techniques ideas are quite simple. You fly around using boosters shooting from your hands (as described above). For the interaction, you would need to bring an object, shaped like a T, as close as possible to a target of the same shape in terms of rotation and translation, which both spawn during a challenge.</p>
 <p>My idea was initially to lock the T shape in place and only have it rotate freely. You would shoot it with the booster giving it rotation from the particles pushing against it. However, after learning that translation must also be part of the challenge, I added a surrounding box, in which the T shape would freely bounce.
 Once the target shape is as close as possible, you just press a button on your controller to lock it in place and finalize the challenge.</p>
 <p>The challenge location would be on the different planets to which you had to fly to complete it.</p>
-<p><img src="/interaction-challenge-screenshot.jpeg" alt="Interaction Challenge"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/interaction-challenge-screenshot.jpeg" alt="Interaction Challenge"></p>
 <h2 id="porting-to-vr">Porting to VR</h2>
 <p>I could elaborate on a long boring list of things that were necessary to do to get to a stable point, but what it boils down to is this:</p>
 <ul>
@@ -147,7 +147,7 @@ A general problem for VR is when the player needs to be rotated or moved, but he
 Finally, I mostly figured out what I had to change in the ocean and atmosphere calculations to be rendered correctly for both eyes, which was essentially manually calculating the view vector (for both eyes) by passing the appropriate matrices to the shader and doing the final calculation there because the view vector differs for each vertex.</p>
 <h3 id="making-my-own-planets">Making my own planets</h3>
 <p>This was a lot of fun. The original Unity project had a custom script to customize planets, so all you had to figure out was which type of planet you wanted, create all the necessary parts, and then play around by customizing them. Because the planet&rsquo;s atmospheres, oceans, and surfaces are all either post-processing or compute shaders, you just had to change as many noise values as you could in the custom script to keep it distinct from the other planets, while also keeping it still recognizable and interesting. Using this script I made three more planets: An ocean planet with many tiny islands, a giant planet, and a dark mysterious shadow planet.</p>
-<p><img src="/water-planet.jpg" alt="waterplanet"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/water-planet.jpg" alt="waterplanet"></p>
 <h3 id="solar-system-orbits">Solar System orbits</h3>
 <p>Wanting to keep the spirit of my idea alive, the worst thing to do would be to make the planets follow hard-coded orbits. The initial project was already doing the gravity calculation which was perfect for my needs, all I did was scale the G constant a bit to make gravity way stronger.</p>
 <h2 id="interaction-challenge">Interaction challenge</h2>
@@ -161,7 +161,7 @@ Finally, I mostly figured out what I had to change in the ocean and atmosphere c
 <p>A fun part was figuring out how to make any number of challenges possible. I decided to randomly generate them based on a seed by taking all the vertices of a planet mesh, removing all below the ocean, and picking a random one to spawn a challenge &ldquo;above&rdquo; it.</p>
 <p>This got a bit more complicated after adding planet rotation, because the vertices would no longer match up to their actual position, meaning I now had to also rotate the chosen vertex in just the same way as the planet, which is easy to do by taking the initial planet rotation and getting the delta between the current one, then applying it to the vertex. The same thing goes for the beacon obviously.</p>
 <p>The final problem was the T shape. Because the goal was to push it around using my boosters, it had to be a Rigidbody to interact with the particles. The problem here is that you can&rsquo;t just attach it to the planet at a certain point like a transform. What needed to be done was to manually calculate the correct velocity you need to apply for it to stay in place relative to the planet it&rsquo;s on. And finally, you also need to rotate it with the planet, otherwise to an observer standing on the planet (which rotates) it would look like the shape is rotating, while it is actually not. This image explains it better:</p>
-<p><img src="/rotationexplanation.PNG" alt="Interaction Challenge expl"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/rotationexplanation.PNG" alt="Interaction Challenge expl"></p>
 <h3 id="path-visualization">Path visualization</h3>
 <p>I decided early on that I would need to show the player approximately where they are going because otherwise, this is difficult to estimate. I made a Linerenderer show the simulated next X steps where the player would go in the future by simulating the planets X steps into the future and then applying the gravity equation for the simulated player at every step.</p>
 <p>It was also important to not have a global reference frame, which would just confuse, but rather make the line relative to the closest planet. Planet rotation also complicated this part, so I made it relative to the rotation as well.</p>
@@ -185,11 +185,11 @@ Finally, I mostly figured out what I had to change in the ocean and atmosphere c
 <p>Just for fun I also made it so that after completing the course, the sun&rsquo;s gravity is increased by 10, thereby instantly launching the player towards it and resetting him to the menu.</p>
 <h3 id="instability">Instability</h3>
 <p>Having the planets interact purely through gravity made the solar system very sensitive to its starting configuration. I especially felt this when adding three new planets to the outer solar system. With each new planet, the orbits of all the other planets started to differ a lot, and it took some time to get them just right so the solar system didn&rsquo;t shoot out into chaos. Here is an example of just a single planet having its starting velocity differ by 1 m/s:</p>
-<p><img src="/OrbitDebugGood.PNG" alt="orbits good">
-<img src="/OrbitDebugBad.PNG" alt="orbits bad"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/OrbitDebugGood.PNG" alt="orbits good">
+<img src="https://EduardR02.github.io/MyBlog/OrbitDebugBad.PNG" alt="orbits bad"></p>
 <h4 id="weird-orbits">Weird Orbits</h4>
 <p>Slightly related to the instability mentioned above are the weird orbits of moons, which result from increasing the planet&rsquo;s orbital speed by about 10x - 20x, and about 5x bigger than what they were before. This was necessary to make the system feel less static and actually <em>look</em> fast and <strong>big</strong>.</p>
-<p><img src="/weird_orbits.PNG" alt="weird orbits"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/weird_orbits.PNG" alt="weird orbits"></p>
 <p>As a side effect, where you would expect circular orbits of moons, there are these weirdly shaped ones, which from the point of view of the planet look like the moon being stationary for some time, relative to the planet, then moving quickly to the other side.</p>
 <h2 id="evaluation">Evaluation</h2>
 <hr>
@@ -277,8 +277,8 @@ Deleting planets could function in the same way.</p>
 <p>Being curious and trying things out was definitely the most important part of this journey, as it allowed me to explore and learn where I didn&rsquo;t know the right answer.</p>
 <p>As a byproduct, I also learned a lot about Unity and general Game Dev, while also scratching the surface of some interesting shader math, with many further topics to explore (knowing what I don&rsquo;t know).</p>
 <p>Here are some more nice pictures</p>
-<p><img src="/solar-system-view.jpeg" alt="solar system pic 1">
-<img src="/solar-system-view2.jpeg" alt="solar system pic 2"></p>
+<p><img src="https://EduardR02.github.io/MyBlog/solar-system-view.jpeg" alt="solar system pic 1">
+<img src="https://EduardR02.github.io/MyBlog/solar-system-view2.jpeg" alt="solar system pic 2"></p>
 
     </div>
 </div>
