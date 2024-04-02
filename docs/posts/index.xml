@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Projects Blog</title>
-    <link>https://eduardr02.github.io/MyBlog/posts/</link>
+    <link>http://localhost:1313/MyBlog/posts/</link>
     <description>Recent content in Posts on Projects Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>eduard@rantsevich.net (Eduard Rantsevich)</managingEditor>
     <webMaster>eduard@rantsevich.net (Eduard Rantsevich)</webMaster>
     <lastBuildDate>Mon, 01 Apr 2024 11:26:57 +0200</lastBuildDate>
-    <atom:link href="https://eduardr02.github.io/MyBlog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/MyBlog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VR Solar System</title>
-      <link>https://eduardr02.github.io/MyBlog/posts/my-first-post/</link>
+      <link>http://localhost:1313/MyBlog/posts/my-first-post/</link>
       <pubDate>Mon, 01 Apr 2024 11:26:57 +0200</pubDate><author>eduard@rantsevich.net (Eduard Rantsevich)</author>
-      <guid>https://eduardr02.github.io/MyBlog/posts/my-first-post/</guid>
+      <guid>http://localhost:1313/MyBlog/posts/my-first-post/</guid>
       <description>Introduction This semester I was looking around for an interesting class. My goal was to pick something where I would be able to learn as much as possible, meaning I wanted to start from zero and choose something I had not engaged with before: Game Dev and VR.&#xA;It was always in the back of my mind that this whole topic kind of exists and is exciting, but I never got around to actually downloading Unity and tinkering with it myself.</description>
     </item>
   </channel>
