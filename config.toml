@@ -5,8 +5,8 @@ title = "Projects Blog"
 theme = "nightfall"
 
 [params]
-user = "EduardR"
-hostname = "eduards-projects.io"
+user = "EduardR02"
+hostname = "github.io"
 sitedescription = "Here I will share my project updates, starting with the Solar System for my VR course"
   [params.author]
     name = "Eduard Rantsevich"
