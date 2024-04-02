@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/myblog/posts/</loc>
+    <loc>https://eduardr02.github.io/myblog/posts/</loc>
     <lastmod>2024-04-01T11:26:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/myblog/</loc>
+    <loc>https://eduardr02.github.io/myblog/</loc>
     <lastmod>2024-04-01T11:26:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/myblog/posts/my-first-post/</loc>
+    <loc>https://eduardr02.github.io/myblog/posts/my-first-post/</loc>
     <lastmod>2024-04-01T11:26:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/myblog/categories/</loc>
+    <loc>https://eduardr02.github.io/myblog/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/myblog/tags/</loc>
+    <loc>https://eduardr02.github.io/myblog/tags/</loc>
   </url>
 </urlset>
